@@ -1,0 +1,3 @@
+[submodule "Assets/Plugins/Bezier"]
+	path = Assets/Plugins/Bezier
+	url = https://github.com/zORg-alex/BezierZ.git
