@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8ca1ed17ced11546b3e99d59cbb7980, type: 3}
+  m_Name: BasicBurstTower
+  m_EditorClassIdentifier: 
+  MaxDistance: 3
+  MinDistance: 0
+  PauseBetweenShots: 0.1
+  BurstRechargeTime: 5
+  BurstShotCount: 10
+  IsSplash: 0
+  SplashRadius: 0
+  IsRectSplash: 0
+  RectSplash: {x: 0, y: 0}
+  Damage: 5

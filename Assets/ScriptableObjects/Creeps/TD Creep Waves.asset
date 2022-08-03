@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: TD Creep Waves
+  m_EditorClassIdentifier: Assembly-CSharp::TDCreepWaves
+  Groups:
+  - {fileID: 11400000, guid: 9274650cf249c90499c0fdf89bc9889d, type: 2}
+  - {fileID: 11400000, guid: 96bcbf630294b034a9e7599ad2821dbc, type: 2}
