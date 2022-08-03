@@ -11,4 +11,25 @@ public static class DefaultUtils
 		prevCoroutine = coroutineMethod();
 		mbeh.StartCoroutine(prevCoroutine);
 	}
+
+	public static void Reset(this Transform t, Transform parent = null, bool keepScale = false)
+	{
+		if (parent != null && parent)
+			t.parent = parent;
+		t.localPosition = Vector3.zero;
+		t.localRotation = Quaternion.identity;
+		if (!keepScale)
+			t.localScale = Vector3.one;
+	}
+
+	public static T ResetTransform<T>(this T script, Transform parent = null, bool keepScale = false) where T : Component
+	{
+		script.transform.Reset(parent, keepScale);
+		return script;
+	}
+	public static GameObject ResetTransform(this GameObject go, Transform parent = null, bool keepScale = false)
+	{
+		go.transform.Reset(parent, keepScale);
+		return go;
+	}
 }
