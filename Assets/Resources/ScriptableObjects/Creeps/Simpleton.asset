@@ -15,4 +15,4 @@ MonoBehaviour:
   HP: 50
   Speed: 1
   Diameter: 1
-  prefab: {fileID: 0}
+  prefab: {fileID: 1156864919335934175, guid: eca8dcb024eaca8478c8b5ba284f6d7e, type: 3}
