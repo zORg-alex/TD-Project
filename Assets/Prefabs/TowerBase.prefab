@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 3226868546191207974}
   - component: {fileID: 3226868546191207993}
   - component: {fileID: 3226868546191207992}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +197,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3076812837161059658}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: UIRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}

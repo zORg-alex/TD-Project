@@ -18,7 +18,7 @@ public class UIController : MonoBehaviour
 	private void PrimaryClick_started(InputAction.CallbackContext obj)
 	{
 		var ray = cam.ScreenPointToRay(input.UI.PointerPosition.ReadValue<Vector2>());
-		var hits = Physics.RaycastAll(ray, 8);
+		var hits = Physics.RaycastAll(ray, float.MaxValue, 1 << 8);
 		foreach (var hit in hits)
 		{
 			var ctx = new ClickContext() { IsMouseButton = true, MouseButton = 0 };
@@ -29,6 +29,12 @@ public class UIController : MonoBehaviour
 				return;
 			}
 		}
+	}
+
+	void OnDrawGizmos()
+	{
+		var ray = cam.ScreenPointToRay(input.UI.PointerPosition.ReadValue<Vector2>());
+		UnityEditor.Handles.DrawAAPolyLine(ray.origin, ray.origin + ray.direction * 10);
 	}
 }
 
