@@ -18,5 +18,5 @@ public class TDCreepWaves : ScriptableObject
     }
 
     public List<TDCreepWave> Waves;
-    public float timeBetween = 15f;
+    //public float timeBetween = 15f;
 }

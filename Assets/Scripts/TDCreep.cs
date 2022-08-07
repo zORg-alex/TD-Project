@@ -5,17 +5,17 @@ using UnityEngine;
 public class TDCreep : MonoBehaviour
 {
 	public TDCreepSO creepSO;
-	public SimpleCreepBehaviour creepBehaviour;
+	public CreepHealthBar creepHealthBar;
 	public Vector3 posOffset;
 	public float travelledDistance;
 
 	public float Health = -1;
 	public float Speed;
 	public float Damage;
+	internal Func<bool> OnDeath;
 
 	void OnEnable()
 	{
-		creepBehaviour = GetComponent<SimpleCreepBehaviour>();
 		if (Health == -1)
 		{
 			Damage = creepSO.Damage;
@@ -27,14 +27,20 @@ public class TDCreep : MonoBehaviour
 	internal void TakeDamage(float damage)
 	{
 		Health -= damage;
+		if (creepHealthBar)
+			creepHealthBar.UpdateHP(Health / creepSO.HP);
 		if (Health <= 0)
+		{
 			Death();
+			CastleScript.AddGold((int)UnityEngine.Random.Range(creepSO.MinMaxGold.x, creepSO.MinMaxGold.y));
+		}
 	}
 
 	internal void Death()
 	{
 		TDCreepController.Instance.CreepDied(this);
 		Destroy(gameObject);
+		OnDeath?.Invoke();
 	}
 
 	internal void DamageCastle()
@@ -42,9 +48,4 @@ public class TDCreep : MonoBehaviour
 		CastleScript.ApplyDamage(Damage);
 		Death();
 	}
-}
-
-public class SimpleCreepBehaviour : MonoBehaviour
-{
-
 }

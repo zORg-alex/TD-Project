@@ -8,4 +8,5 @@ public class TDCreepSO : ScriptableObject
 	public float Speed = 1f;
 	public float Diameter = 1f;
 	public TDCreep prefab;
+	public Vector2 MinMaxGold = Vector2.one;
 }

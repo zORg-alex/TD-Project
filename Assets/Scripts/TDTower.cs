@@ -32,7 +32,10 @@ public class TDTower : MonoBehaviour
 		if (other.GetComponent<TDCreep>() is TDCreep creep)
 		{
 			_creepList.Add(creep);
-			this.RestartCoroutine(OnShootCreeps, ref _onShootCreeps);
+			creep.OnDeath += () => _creepList.Remove(creep);
+			_creepList.Sort((a, b) => a.travelledDistance.CompareTo(b.travelledDistance));
+			if (_onShootCreeps == null)
+				this.RestartCoroutine(OnShootCreeps, ref _onShootCreeps);
 		}
 	}
 
@@ -40,17 +43,24 @@ public class TDTower : MonoBehaviour
 	{
 		while (_creepList.Count > 0)
 		{
-			_creepList.Sort((a,b)=>a.travelledDistance.CompareTo(b.travelledDistance));
-			_targetedCreep = _creepList.FirstOrDefault();
+			_targetedCreep = _creepList.LastOrDefault();
+			if (_targetedCreep)
+				_pointingTowerScript?.SetTarget(_targetedCreep.transform);
+			else
+				break;
 
 			for (int i = 0; i < towerSO.BurstShotCount; i++)
 			{
-				if (_targetedCreep)
+				_pointingTowerScript?.Shoot();
+				float dist = Vector3.Distance(transform.position, _targetedCreep.transform.position);
+				if (_targetedCreep && dist > towerSO.MinDistance && dist < towerSO.MaxDistance)
 					_targetedCreep.TakeDamage(towerSO.Damage);
 				yield return new WaitForSeconds(towerSO.PauseBetweenShots);
 			}
 
 			yield return new WaitForSeconds(towerSO.BurstRechargeTime);
 		}
+		_onShootCreeps = null;
+		_pointingTowerScript?.ResetTarget();
 	}
 }

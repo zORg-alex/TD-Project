@@ -15,4 +15,4 @@ MonoBehaviour:
   Waves:
   - {fileID: 11400000, guid: 9274650cf249c90499c0fdf89bc9889d, type: 2}
   - {fileID: 11400000, guid: 96bcbf630294b034a9e7599ad2821dbc, type: 2}
-  timeBetween: 1
+  timeBetween: 5

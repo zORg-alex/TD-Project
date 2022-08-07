@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -27,16 +28,24 @@ public class CastleScript : MonoBehaviour
 	public float MaxHealth = 100;
 	public float Health = -1;
     public FloatUEvent OnHealthChanged = new FloatUEvent();
+    public float Gold = 0;
+    public FloatUEvent OnGoldChanged = new FloatUEvent();
 
 	void Start()
 	{
 		if (Health == -1)
 			Health = MaxHealth;
         OnHealthChanged?.Invoke(Health);
+        OnGoldChanged?.Invoke(Gold);
 	}
 
+	public static void AddGold(float g)
+	{
+        Instance.Gold += g;
+        Instance.OnGoldChanged?.Invoke(Instance.Gold);
+	}
 
-    public static void ApplyDamage(float damage) => Instance.ApplyDamage_(damage);
+	public static void ApplyDamage(float damage) => Instance.ApplyDamage_(damage);
 	public void ApplyDamage_(float damage)
 	{
         Health -= damage;

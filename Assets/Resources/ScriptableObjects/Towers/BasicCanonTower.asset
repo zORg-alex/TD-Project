@@ -16,7 +16,7 @@ MonoBehaviour:
   MaxDistance: 5
   MinDistance: 1
   PauseBetweenShots: 0
-  BurstRechargeTime: 0
+  BurstRechargeTime: 2
   BurstShotCount: 1
   IsSplash: 0
   SplashRadius: 0

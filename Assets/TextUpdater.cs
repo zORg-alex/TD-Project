@@ -14,4 +14,9 @@ public class TextUpdater : MonoBehaviour
 		if (!textPro) textPro = GetComponent<TMP_Text>();
 		if (textPro) textPro.text = string.Format(format, value);
 	}
+	public void UpdateText(float val1, float val2)
+	{
+		if (!textPro) textPro = GetComponent<TMP_Text>();
+		if (textPro) textPro.text = string.Format(format, val1, val2);
+	}
 }

@@ -16,4 +16,4 @@ MonoBehaviour:
   Damage: 3
   Speed: 1.2
   Diameter: 1.5
-  prefab: {fileID: 0}
+  prefab: {fileID: 1156864919335934175, guid: 80c2d354314ad4c458a83b206de4444d, type: 3}

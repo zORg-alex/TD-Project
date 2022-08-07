@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TDCreepController : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class TDCreepController : MonoBehaviour
 	public PathScript path;
 	public float timeSinceLasSpawn;
 	private Vector3 _spawnPoint;
+
+	[Serializable]
+	public class FloatFloatUEvent : UnityEvent<float, float> { }
+	public FloatFloatUEvent OnWaveNumberChanged = new FloatFloatUEvent();
 	public static TDCreepController Instance { get; private set; }
 
 	void OnEnable()
@@ -40,10 +45,13 @@ public class TDCreepController : MonoBehaviour
 
 	IEnumerator SpawnCycle()
 	{
+		int wi = 0;
 		foreach (var wave in TDCreepWaves.Instance.Waves)
 		{
-			yield return new WaitUntil(() => spawnedCreeps.Count == 0);
-			yield return new WaitForSeconds(TDCreepWaves.Instance.timeBetween);
+			wi++;
+			OnWaveNumberChanged?.Invoke(wi, TDCreepWaves.Instance.Waves.Count);
+			//yield return new WaitUntil(() => spawnedCreeps.Count == 0);
+			//yield return new WaitForSeconds(TDCreepWaves.Instance.timeBetween);
 			foreach (var group in wave.Groups)
 			{
 				var positions = HexPositionsUtility.FillHex(group.count, group.creep.Diameter / 2).Select(v => new Vector3(v.x, 0, v.y)).ToArray();
@@ -57,6 +65,7 @@ public class TDCreepController : MonoBehaviour
 
 				yield return new WaitForSeconds(wave.timeBetween);
 			}
+			yield return new WaitForSeconds(wave.Duration);
 		}
 	}
 	IEnumerator UpdateCreep()

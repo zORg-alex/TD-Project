@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8ca1ed17ced11546b3e99d59cbb7980, type: 3}
   m_Name: BasicBurstTower
   m_EditorClassIdentifier: 
+  prefab: {fileID: 6930774507300731185, guid: 6c95fbc86376ca0419cb0ab1cd8dde35, type: 3}
   MaxDistance: 3
   MinDistance: 0
   PauseBetweenShots: 0.1
