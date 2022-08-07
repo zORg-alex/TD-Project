@@ -24,6 +24,13 @@ public class TDCreep : MonoBehaviour
 		}
 	}
 
+	internal void TakeDamage(float damage)
+	{
+		Health -= damage;
+		if (Health <= 0)
+			Death();
+	}
+
 	internal void Death()
 	{
 		TDCreepController.Instance.CreepDied(this);
