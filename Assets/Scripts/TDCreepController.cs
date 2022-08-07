@@ -42,6 +42,7 @@ public class TDCreepController : MonoBehaviour
 	{
 		foreach (var wave in TDCreepWaves.Instance.Waves)
 		{
+			yield return new WaitUntil(() => spawnedCreeps.Count == 0);
 			yield return new WaitForSeconds(TDCreepWaves.Instance.timeBetween);
 			foreach (var group in wave.Groups)
 			{
@@ -65,9 +66,14 @@ public class TDCreepController : MonoBehaviour
 			foreach (var creep in spawnedCreeps)
 			{
 				if (!creep) continue;
-				float deltaDist = creep.creepSO.Speed * Time.deltaTime;
-				creep.transform.position = path.GetNextPosition(creep.travelledDistance, creep.posOffset, deltaDist);
-				creep.travelledDistance += deltaDist;
+				//float deltaDist = creep.creepSO.Speed * Time.deltaTime;
+				var nextPos = path.GetPosition(creep.travelledDistance + 1f, Vector3.zero);
+				creep.transform.position = Vector3.MoveTowards(creep.transform.position, nextPos, creep.Speed * Time.deltaTime);
+				creep.travelledDistance = path.GetDistance(creep.transform.position);
+				if (creep.travelledDistance > path.FullLength)
+				{
+					creep.DamageCastle();
+				}
 			}
 			yield return null;
 		}

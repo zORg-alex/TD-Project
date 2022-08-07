@@ -30,12 +30,6 @@ public class UIController : MonoBehaviour
 			}
 		}
 	}
-
-	void OnDrawGizmos()
-	{
-		var ray = cam.ScreenPointToRay(input.UI.PointerPosition.ReadValue<Vector2>());
-		UnityEditor.Handles.DrawAAPolyLine(ray.origin, ray.origin + ray.direction * 10);
-	}
 }
 
 public interface IClickable

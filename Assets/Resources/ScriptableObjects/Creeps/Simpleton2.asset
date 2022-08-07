@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Simpleton2
   m_EditorClassIdentifier: Assembly-CSharp::TDCreepSO
   HP: 75
+  Damage: 3
   Speed: 1.2
-  Diameter: 1.3
+  Diameter: 1.5
   prefab: {fileID: 0}

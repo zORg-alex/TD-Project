@@ -9,15 +9,31 @@ public class TDCreep : MonoBehaviour
 	public Vector3 posOffset;
 	public float travelledDistance;
 
+	public float Health = -1;
+	public float Speed;
+	public float Damage;
+
 	void OnEnable()
 	{
 		creepBehaviour = GetComponent<SimpleCreepBehaviour>();
+		if (Health == -1)
+		{
+			Damage = creepSO.Damage;
+			Health = creepSO.HP;
+			Speed = creepSO.Speed;
+		}
 	}
 
-	private void Death()
+	internal void Death()
 	{
 		TDCreepController.Instance.CreepDied(this);
 		Destroy(gameObject);
+	}
+
+	internal void DamageCastle()
+	{
+		CastleScript.ApplyDamage(Damage);
+		Death();
 	}
 }
 

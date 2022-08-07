@@ -26,9 +26,28 @@ public class PathScript : MonoBehaviour
 		return transform.TransformPoint(curve.GetPoint(0, 0));
 	}
 
-	internal Vector3 GetNextPosition(float currentDistance, Vector3 offset, float distance)
+	internal Vector3 GetPosition(float distnce, Vector3 offset)
 	{
-		var rot = curve.GetRotationAtLength(currentDistance + distance);
-		return transform.TransformPoint(curve.GetPointAtLength(currentDistance + distance) + rot * offset);
+		var rot = curve._vertexData.GetRotationAtLength(distnce);
+		return transform.TransformPoint(curve._vertexData.GetPointAtLength(distnce) + rot * offset);
 	}
+
+	public float FullLength => curve.VertexDataLength;
+	public float GetDistance(Vector3 position)
+	{
+		var t = curve.GetClosestPointTimeSegment(transform.InverseTransformPoint(position), out int segmentInd);
+		//lines.Add(new Vector3[] { position, curve.GetPoint(segmentInd, t) });
+		return curve._vertexData.GetLength(segmentInd, t);
+	}
+
+	//List<Vector3[]> lines = new List<Vector3[]>();
+	//void OnDrawGizmos()
+	//{
+	//	foreach (var l in lines)
+	//	{
+	//		UnityEditor.Handles.DrawAAPolyLine(l[0], transform.TransformPoint(l[1]));
+	//	}
+	//	if (!UnityEditor.EditorApplication.isPaused)
+	//		lines.Clear();
+	//}
 }
